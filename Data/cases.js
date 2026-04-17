@@ -19,8 +19,8 @@ export const cases = [
     image: "images/cases/crate.jpeg",
 
     drops: [
-      { cardId: "rt1_hallway", weight: 30 },
-      { cardId: "vending_machine_24", weight: 3 }
+      { cardId: "rt1_hallway" },
+      { cardId: "vending_machine_24" }
     ]
   }
 ];
