@@ -12,8 +12,8 @@ When editing use this format:
 5. Open Pull Request
 6. Merge after review
 commands:
-1.git pull origin main
-2.git checkout -b "branch name"
-3.git add .
-4.git commit -m "commit message"
-5.git push origin "branch name"
+1. git pull origin main
+2. git checkout -b "branch name"
+3. git add .
+4. git commit -m "commit message"
+5. git push origin "branch name"
