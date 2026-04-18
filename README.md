@@ -4,13 +4,6 @@ WECIB-gacha is a card opening game inspired by WikiGacha the game includes vario
 
 WIP
 
-When editing use this format:
-1. Pull latest code
-2. Make your own branch
-3. Work on your feature
-4. Push your branch
-5. Open Pull Request
-6. Merge after review
 commands:
 1. git pull origin main
 2. git checkout -b "branch name"
