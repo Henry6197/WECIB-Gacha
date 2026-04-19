@@ -1,3 +1,5 @@
+import { cards } from "./Data/cards.js";
+import { CASES, RARITIES } from "./Data/cases.js";
 // ─── Skin Data ───────────────────────────────────────────────
 
 const RARITIES = {
