@@ -1,3 +1,4 @@
+//placeholders currently
 export const RARITIES = {
   common: { label: "Freshman", color: "#dee4ff", weight: 65 },
   uncommon: { label: "Sophomore", color: "#8fff74", weight: 25 },
