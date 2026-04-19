@@ -1,4 +1,3 @@
-//placeholder values
 export class Card {
   constructor({
     id,
