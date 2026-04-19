@@ -1,3 +1,4 @@
+//placeholders currently
 export class Card {
   constructor({
     id,
