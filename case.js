@@ -39,7 +39,7 @@ const S = 'https://community.akamai.steamstatic.com/economy/image/';
 
 const CASES = [
   {
-name: 'WECIB Starter Case',
+name: 'MHS Case',
     price: 1.00,
     image: S+'i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJKz2lu_XsnXwtmkJjSU91dh8bji61XxRCKg0MSz_nUDvPb-OPFvdKTFDzbAkbp16bY5Gn6wkx9ysj7Xntf9IC6WZgA-Sswnnj45WXo',
     items: [
@@ -63,8 +63,57 @@ name: 'WECIB Starter Case',
       { name: 'Mason Clark', rarity: 'secret', price: 350.00, attack: 481, defense: 455, image: 'https://randomuser.me/api/portraits/men/9.jpg' },
     ]
   },
+    {
+name: 'RT2 Case',
+    price: 30.00,
+    image: S+'i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJKz2lu_XsnXwtmkJjSU91dh8bji61XxRCKg0MSz_nUDvPb-OPFvdKTFDzbAkbp16bY5Gn6wkx9ysj7Xntf9IC6WZgA-Sswnnj45WXo',
+    items: [
+      { name: 'Emma Rodriguez', rarity: 'common', price: 3.50, attack: 92, defense: 76, image: 'https://randomuser.me/api/portraits/women/1.jpg' },
+      { name: 'James Chen', rarity: 'uncommon', price: 8.25, attack: 182, defense: 167, image: 'https://randomuser.me/api/portraits/men/1.jpg' },
+      { name: 'Sarah Williams', rarity: 'rare', price: 19.99, attack: 264, defense: 251, image: 'https://randomuser.me/api/portraits/women/2.jpg' },
+      { name: 'Marcus Johnson', rarity: 'common', price: 2.75, attack: 71, defense: 88, image: 'https://randomuser.me/api/portraits/men/2.jpg' },
+      { name: 'Olivia Martin', rarity: 'uncommon', price: 11.40, attack: 211, defense: 174, image: 'https://randomuser.me/api/portraits/women/3.jpg' },
+      { name: 'David Anderson', rarity: 'rare', price: 25.30, attack: 298, defense: 242, image: 'https://randomuser.me/api/portraits/men/3.jpg' },
+      { name: 'Isabella Davis', rarity: 'epic', price: 42.50, attack: 352, defense: 341, image: 'https://randomuser.me/api/portraits/women/4.jpg' },
+      { name: 'Lucas Brown', rarity: 'common', price: 1.99, attack: 119, defense: 101, image: 'https://randomuser.me/api/portraits/men/4.jpg' },
+      { name: 'Sophia Kumar', rarity: 'uncommon', price: 9.80, attack: 196, defense: 226, image: 'https://randomuser.me/api/portraits/women/5.jpg' },
+      { name: 'Noah Taylor', rarity: 'rare', price: 18.75, attack: 273, defense: 317, image: 'https://randomuser.me/api/portraits/men/5.jpg' },
+      { name: 'Ava Thompson', rarity: 'epic', price: 55.00, attack: 384, defense: 332, image: 'https://randomuser.me/api/portraits/women/6.jpg' },
+      { name: 'Ethan Wilson', rarity: 'epic', price: 125.99, attack: 417, defense: 398, image: 'https://randomuser.me/api/portraits/men/6.jpg' },
+      { name: 'Mia Garcia', rarity: 'common', price: 4.25, attack: 58, defense: 133, image: 'https://randomuser.me/api/portraits/women/7.jpg' },
+      { name: 'Benjamin Lee', rarity: 'uncommon', price: 12.60, attack: 145, defense: 203, image: 'https://randomuser.me/api/portraits/men/7.jpg' },
+      { name: 'Charlotte Moore', rarity: 'rare', price: 23.45, attack: 308, defense: 289, image: 'https://randomuser.me/api/portraits/women/8.jpg' },
+      { name: 'Alexander White', rarity: 'epic', price: 48.75, attack: 329, defense: 411, image: 'https://randomuser.me/api/portraits/men/8.jpg' },
+      { name: 'Amelia Harris', rarity: 'epic', price: 89.50, attack: 366, defense: 374, image: 'https://randomuser.me/api/portraits/women/9.jpg' },
+      { name: 'Mason Clark', rarity: 'secret', price: 350.00, attack: 481, defense: 455, image: 'https://randomuser.me/api/portraits/men/9.jpg' },
+    ]
+  },
+{
+name: 'RT1 Case',
+    price: 100.00,
+    image: S+'i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJKz2lu_XsnXwtmkJjSU91dh8bji61XxRCKg0MSz_nUDvPb-OPFvdKTFDzbAkbp16bY5Gn6wkx9ysj7Xntf9IC6WZgA-Sswnnj45WXo',
+    items: [
+      { name: 'Emma Rodriguez', rarity: 'common', price: 3.50, attack: 92, defense: 76, image: 'https://randomuser.me/api/portraits/women/1.jpg' },
+      { name: 'James Chen', rarity: 'uncommon', price: 8.25, attack: 182, defense: 167, image: 'https://randomuser.me/api/portraits/men/1.jpg' },
+      { name: 'Sarah Williams', rarity: 'rare', price: 19.99, attack: 264, defense: 251, image: 'https://randomuser.me/api/portraits/women/2.jpg' },
+      { name: 'Marcus Johnson', rarity: 'common', price: 2.75, attack: 71, defense: 88, image: 'https://randomuser.me/api/portraits/men/2.jpg' },
+      { name: 'Olivia Martin', rarity: 'uncommon', price: 11.40, attack: 211, defense: 174, image: 'https://randomuser.me/api/portraits/women/3.jpg' },
+      { name: 'David Anderson', rarity: 'rare', price: 25.30, attack: 298, defense: 242, image: 'https://randomuser.me/api/portraits/men/3.jpg' },
+      { name: 'Isabella Davis', rarity: 'epic', price: 42.50, attack: 352, defense: 341, image: 'https://randomuser.me/api/portraits/women/4.jpg' },
+      { name: 'Lucas Brown', rarity: 'common', price: 1.99, attack: 119, defense: 101, image: 'https://randomuser.me/api/portraits/men/4.jpg' },
+      { name: 'Sophia Kumar', rarity: 'uncommon', price: 9.80, attack: 196, defense: 226, image: 'https://randomuser.me/api/portraits/women/5.jpg' },
+      { name: 'Noah Taylor', rarity: 'rare', price: 18.75, attack: 273, defense: 317, image: 'https://randomuser.me/api/portraits/men/5.jpg' },
+      { name: 'Ava Thompson', rarity: 'epic', price: 55.00, attack: 384, defense: 332, image: 'https://randomuser.me/api/portraits/women/6.jpg' },
+      { name: 'Ethan Wilson', rarity: 'epic', price: 125.99, attack: 417, defense: 398, image: 'https://randomuser.me/api/portraits/men/6.jpg' },
+      { name: 'Mia Garcia', rarity: 'common', price: 4.25, attack: 58, defense: 133, image: 'https://randomuser.me/api/portraits/women/7.jpg' },
+      { name: 'Benjamin Lee', rarity: 'uncommon', price: 12.60, attack: 145, defense: 203, image: 'https://randomuser.me/api/portraits/men/7.jpg' },
+      { name: 'Charlotte Moore', rarity: 'rare', price: 23.45, attack: 308, defense: 289, image: 'https://randomuser.me/api/portraits/women/8.jpg' },
+      { name: 'Alexander White', rarity: 'epic', price: 48.75, attack: 329, defense: 411, image: 'https://randomuser.me/api/portraits/men/8.jpg' },
+      { name: 'Amelia Harris', rarity: 'epic', price: 89.50, attack: 366, defense: 374, image: 'https://randomuser.me/api/portraits/women/9.jpg' },
+      { name: 'Mason Clark', rarity: 'secret', price: 350.00, attack: 481, defense: 455, image: 'https://randomuser.me/api/portraits/men/9.jpg' },
+    ]
+  },
 ];
-
 function playTicksDuring() {
   // Optional sound hook; kept as a no-op when no audio assets are configured.
 }
