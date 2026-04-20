@@ -1,4 +1,3 @@
-
 * {
   box-sizing: border-box;
 }
@@ -64,17 +63,49 @@
   white-space: nowrap;
 }
 
-.rarity-common { background: #dee4ff; }
-.rarity-common .item-name { color: #1e3a8a; }
+.rarity-common {
+  background: #dee4ff;
+}
 
-.rarity-uncommon { background: #8fff74; }
-.rarity-uncommon .item-name { color: #1b4d0c; }
+.rarity-common .item-name {
+  color: #1e3a8a;
+}
 
-.rarity-rare { background: #4781ff; }
-.rarity-rare .item-name { color: #ffffff; }
+.rarity-uncommon {
+  background: #8fff74;
+}
 
-.rarity-epic { background: #922ce6; }
-.rarity-epic .item-name { color: #ffffff; }
+.rarity-uncommon .item-name {
+  color: #1b4d0c;
+}
 
-.rarity-secret { background: #ffd700; }
-.rarity-secret .item-name { color: #1a1a1a; }
+.rarity-rare {
+  background: #4781ff;
+}
+
+.rarity-rare .item-name {
+  color: #ffffff;
+}
+
+.rarity-epic {
+  background: #922ce6;
+}
+
+.rarity-epic .item-name {
+  color: #ffffff;
+}
+
+.rarity-secret {
+  background: #ffd700;
+}
+
+.rarity-secret .item-name {
+  color: #1a1a1a;
+}
+
+/* Case scaling fix */
+.case-card .case-icon {
+  max-width: 300px !important;
+  max-height: 300px !important;
+  object-fit: contain !important;
+}
