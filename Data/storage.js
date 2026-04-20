@@ -1,4 +1,3 @@
-//This file will include LocalStorage properties
 const INVENTORY_KEY = "inventory";
 
 function getInventory() {
@@ -13,7 +12,7 @@ function addCardToInventory(card) {
   const inventory = getInventory();
 
   inventory.push({
-    id: crypto.randomUUID(),
+    id: crypto.randomUUID(), // unique so duplicates still work
     name: card.name,
     rarity: card.rarity,
     rarityKey: card.rarityKey,
