@@ -1,9 +1,9 @@
 const RARITIES = {
-  freshman: { label: 'Freshman' },
-  sophomore: { label: 'Sophomore' },
-  junior: { label: 'Junior' },
-  senior: { label: 'Senior' },
-  superSenior: { label: 'Super-Senior' },
+  freshman: { label: 'Freshman', ...CARD_RARITY_STYLES.freshman },
+  sophomore: { label: 'Sophomore', ...CARD_RARITY_STYLES.sophomore },
+  junior: { label: 'Junior', ...CARD_RARITY_STYLES.junior },
+  senior: { label: 'Senior', ...CARD_RARITY_STYLES.senior },
+  superSenior: { label: 'Super-Senior', ...CARD_RARITY_STYLES.superSenior },
 };
 
 const RARITY_ORDER = ['freshman', 'sophomore', 'junior', 'senior', 'superSenior'];
@@ -26,7 +26,11 @@ function enrichCard(card) {
   return {
     ...card,
     rarityKey,
+    rarity: card.rarity || rarityKey,
     rarityLabel: RARITIES[rarityKey].label,
+    rarityColor: RARITIES[rarityKey].color,
+    rarityAccent: RARITIES[rarityKey].accent,
+    image: getCardImage(card, rarityKey),
   };
 }
 
@@ -48,16 +52,37 @@ function getRarityRank(rarityKey) {
   return RARITY_ORDER.indexOf(rarityKey);
 }
 
+function renderItemImageMarkup(card, options = {}) {
+  const safeCard = enrichCard(card);
+  const wrapperClass = options.wrapperClass || 'item-icon';
+  const imageClass = options.imageClass ? `item-image ${options.imageClass}` : 'item-image';
+
+  return `
+    <div class="${wrapperClass}">
+      <img class="${imageClass}" src="${safeCard.image}" alt="${safeCard.name}">
+    </div>
+  `;
+}
+
+function renderRarityChipMarkup(card) {
+  const safeCard = enrichCard(card);
+
+  return `
+    <span class="rarity-chip">
+      <span class="rarity-chip-swatch" style="background:${safeCard.rarityColor}; border-color:${safeCard.rarityAccent};"></span>
+      <span>${safeCard.rarityLabel}</span>
+    </span>
+  `;
+}
+
 function renderCardMarkup(card) {
   const safeCard = enrichCard(card);
 
   return `
     <article class="display-card rarity-${safeCard.rarityKey}">
-      <div class="card-badge">
-        <span>${initialsFromName(safeCard.name)}</span>
-      </div>
+      ${renderItemImageMarkup(safeCard, { wrapperClass: 'card-badge' })}
       <div class="card-copy">
-        <p class="card-rarity">${safeCard.rarityLabel}</p>
+        <div class="card-rarity">${renderRarityChipMarkup(safeCard)}</div>
         <h4>${safeCard.name}</h4>
         <p class="card-description">${safeCard.description || 'No description yet.'}</p>
         <div class="card-stats">
@@ -73,7 +98,7 @@ function updateDashboard() {
   const inventory = getInventory();
   balanceEl.textContent = formatPP(getBalance());
   inventoryCountEl.textContent = String(inventory.length);
-  incomeRateEl.textContent = formatPP(getPassiveIncomePerHour());
+  incomeRateEl.textContent = formatPP(getPassiveIncomePerMinute());
 }
 
 function getGroupedCollection() {

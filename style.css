@@ -335,15 +335,30 @@ button {
 
 .roulette-item {
   flex-shrink: 0;
-  width: 140px;
-  min-width: 140px;
+  width: 160px;
+  min-width: 160px;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 8px;
+  gap: 10px;
+  padding: 14px 8px;
   text-align: center;
+}
+
+.roulette-item-icon {
+  width: 92px;
+  height: 92px;
+  border-radius: 24px;
+}
+
+.roulette-color-swatch {
+  width: 78px;
+  height: 10px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .display-card {
@@ -369,6 +384,7 @@ button {
   place-items: center;
   width: 74px;
   height: 74px;
+  overflow: hidden;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.72);
   border: 1px solid rgba(69, 52, 39, 0.1);
@@ -386,8 +402,8 @@ button {
   place-items: center;
   width: 72px;
   height: 72px;
+  overflow: hidden;
   border-radius: 18px;
-  margin-bottom: 6px;
   border: 1px solid rgba(69, 52, 39, 0.1);
   background: rgba(255, 255, 255, 0.72);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
@@ -395,11 +411,23 @@ button {
   font-size: 1.3rem;
 }
 
+.item-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .item-icon-large {
   width: 94px;
   height: 94px;
   margin: 8px auto 10px;
   font-size: 1.8rem;
+}
+
+.item-image-large {
+  width: 100%;
+  height: 100%;
 }
 
 .card-badge span {
@@ -413,9 +441,33 @@ button {
 
 .card-rarity {
   margin: 0 0 4px;
-  text-transform: uppercase;
+}
+
+.won-rarity {
+  display: flex;
+  justify-content: center;
+}
+
+.rarity-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(69, 52, 39, 0.12);
+  background: rgba(255, 255, 255, 0.76);
   font-size: 0.72rem;
+  font-weight: 700;
   letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.rarity-chip-swatch {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  border: 1px solid transparent;
 }
 
 .card-description,
@@ -427,10 +479,13 @@ button {
   font-size: 0.7rem;
   font-weight: bold;
   line-height: 1.2;
-  max-width: 120px;
+  max-width: 130px;
+  min-height: 2.4em;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .won-item-card {
@@ -439,7 +494,6 @@ button {
   text-align: center;
 }
 
-.won-rarity,
 .won-item-meta,
 .won-item-stats {
   font-size: 0.82rem;
@@ -539,28 +593,32 @@ button {
 }
 
 .rarity-freshman .card-rarity,
-.rarity-freshman .card-badge span {
+.rarity-freshman .rarity-chip,
+.rarity-freshman .won-rarity {
   color: #3259a8;
 }
 
 .rarity-sophomore .card-rarity,
-.rarity-sophomore .card-badge span {
+.rarity-sophomore .rarity-chip,
+.rarity-sophomore .won-rarity {
   color: #3b7a2f;
 }
 
 .rarity-junior .card-rarity,
-.rarity-junior .card-badge span {
+.rarity-junior .rarity-chip,
+.rarity-junior .won-rarity {
   color: #1742b8;
 }
 
 .rarity-senior .card-rarity,
-.rarity-senior .card-badge span {
+.rarity-senior .rarity-chip,
+.rarity-senior .won-rarity {
   color: #b34d13;
 }
 
 .rarity-superSenior .card-rarity,
-.rarity-superSenior .card-badge span,
-.rarity-superSenior .item-icon {
+.rarity-superSenior .rarity-chip,
+.rarity-superSenior .won-rarity {
   color: #8b5e00;
 }
 

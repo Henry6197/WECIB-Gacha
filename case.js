@@ -1,9 +1,9 @@
 const RARITIES = {
-  freshman: { label: 'Freshman', color: '#d7e3ff', accent: '#3259a8', weight: 58 },
-  sophomore: { label: 'Sophomore', color: '#d9f7c8', accent: '#3b7a2f', weight: 25 },
-  junior: { label: 'Junior', color: '#b9d4ff', accent: '#1742b8', weight: 11 },
-  senior: { label: 'Senior', color: '#ffd3a9', accent: '#b34d13', weight: 4 },
-  superSenior: { label: 'Super-Senior', color: '#ffe48c', accent: '#8b5e00', weight: 2 },
+  freshman: { label: 'Freshman', ...CARD_RARITY_STYLES.freshman, weight: 58 },
+  sophomore: { label: 'Sophomore', ...CARD_RARITY_STYLES.sophomore, weight: 25 },
+  junior: { label: 'Junior', ...CARD_RARITY_STYLES.junior, weight: 11 },
+  senior: { label: 'Senior', ...CARD_RARITY_STYLES.senior, weight: 4 },
+  superSenior: { label: 'Super-Senior', ...CARD_RARITY_STYLES.superSenior, weight: 2 },
 };
 
 const RARITY_ORDER = ['freshman', 'sophomore', 'junior', 'senior', 'superSenior'];
@@ -17,11 +17,19 @@ const CASES = [
     items: [
       { name: 'South Hall Stampede', rarity: 'freshman', attack: 42, defense: 35, description: 'The passing-period traffic jam that somehow happens every single day.' },
       { name: 'MHS Campus', rarity: 'freshman', attack: 38, defense: 44, description: 'A wide-angle classic. Reliable, crowded, and always relevant.' },
+      { name: 'Locker Dash', rarity: 'freshman', attack: 40, defense: 37, description: 'A dead sprint to swap books before the bell wins again.' },
+      { name: 'Cafeteria Corner Table', rarity: 'freshman', attack: 44, defense: 34, description: 'Quiet seating, loud opinions, and zero empty chairs.' },
+      { name: 'ID Lanyard Tangle', rarity: 'freshman', attack: 36, defense: 42, description: 'A minor inconvenience that somehow affects everybody at once.' },
+      { name: 'Morning Hall Pass', rarity: 'freshman', attack: 45, defense: 38, description: 'Just enough authority to get through one more hallway check.' },
       { name: 'As Many People As Want Their Picture Taken', rarity: 'sophomore', attack: 66, defense: 57, description: 'A quote with permanent aura. Nobody fully explains it, everyone remembers it.' },
       { name: 'Theatre Hallway', rarity: 'sophomore', attack: 59, defense: 61, description: 'A cultural corridor where half the lore seems to begin.' },
+      { name: 'Attendance Office Line', rarity: 'sophomore', attack: 62, defense: 56, description: 'A queue where every reason somehow sounds urgent.' },
+      { name: 'Pep Rally Echo', rarity: 'sophomore', attack: 64, defense: 60, description: 'School spirit amplified by a gym that refuses to absorb sound.' },
       { name: 'Wallholes', rarity: 'junior', attack: 74, defense: 72, description: 'Architectural mystery turned community bit.' },
       { name: 'Iconic Stairwell Debate', rarity: 'junior', attack: 82, defense: 68, description: 'A minor argument that somehow turned into a semester-long reference.' },
+      { name: 'Gym Shortcut Theory', rarity: 'junior', attack: 79, defense: 71, description: 'A route optimization plan argued with way too much confidence.' },
       { name: 'Mr. Gross Sighting', rarity: 'senior', attack: 95, defense: 80, description: 'A rare appearance that instantly changes the energy in the room.' },
+      { name: 'Final Bell Escape', rarity: 'senior', attack: 101, defense: 88, description: 'A perfectly timed exit line that leaves everyone else behind.' },
       { name: 'Vending Machine Incident of 24', rarity: 'superSenior', attack: 130, defense: 118, description: 'Peak WECIB legend status. The pull everybody talks about.' },
     ],
   },
@@ -33,10 +41,17 @@ const CASES = [
     items: [
       { name: 'Lunch Table Alliance', rarity: 'freshman', attack: 41, defense: 39, description: 'Temporary treaty. Permanent screenshot material.' },
       { name: 'Club Rush Flyer Wall', rarity: 'freshman', attack: 46, defense: 33, description: 'Too many posters, not enough wall space.' },
+      { name: 'Homeroom Seat Swap', rarity: 'freshman', attack: 43, defense: 37, description: 'An everyday shuffle with very serious social stakes.' },
+      { name: 'Library Printer Panic', rarity: 'freshman', attack: 39, defense: 45, description: 'A ten-second task stretched into a full shared crisis.' },
+      { name: 'Hallway Weather Report', rarity: 'freshman', attack: 47, defense: 36, description: 'The outside conditions somehow feel different in every wing.' },
+      { name: 'Water Fountain Rumor', rarity: 'freshman', attack: 44, defense: 40, description: 'A tiny story that travels faster than anybody nearby.' },
       { name: 'Iconic Place Roll Call', rarity: 'sophomore', attack: 63, defense: 55, description: 'A fast tour of the places every WECIB player should know.' },
       { name: 'After-School Atrium Crowd', rarity: 'sophomore', attack: 68, defense: 59, description: 'Nobody is leaving, everyone has a story.' },
+      { name: 'Sub List Surprise', rarity: 'sophomore', attack: 61, defense: 58, description: 'An unexpected roster update that changes the whole mood.' },
+      { name: 'Assembly Exit Gridlock', rarity: 'sophomore', attack: 65, defense: 57, description: 'Everybody has the same idea and the same doorway.' },
       { name: 'Parking Lot Plot Twist', rarity: 'junior', attack: 83, defense: 77, description: 'A routine dismissal interrupted by avoidable nonsense.' },
       { name: 'Spirit Week Sweep', rarity: 'junior', attack: 87, defense: 79, description: 'A coordinated effort with surprising commitment.' },
+      { name: 'Broadcast Booth Banter', rarity: 'junior', attack: 85, defense: 76, description: 'Unplanned commentary that somehow improves the event.' },
       { name: 'Iconic Event Archive', rarity: 'senior', attack: 104, defense: 92, description: 'A binder full of proof that the lore is real.' },
       { name: 'Late Bell Legend', rarity: 'senior', attack: 112, defense: 96, description: 'An all-timer excuse card with elite survivability.' },
       { name: 'Picture Day Uprising', rarity: 'superSenior', attack: 136, defense: 121, description: 'The day the hallway became a full production set.' },
@@ -49,9 +64,18 @@ const CASES = [
     flavor: 'Premium pulls with stacked senior odds and the most replayed WECIB moments.',
     items: [
       { name: 'Morning Announcement Misfire', rarity: 'freshman', attack: 48, defense: 40, description: 'A small glitch that bought itself a lot of attention.' },
+      { name: 'Front Office Detour', rarity: 'freshman', attack: 46, defense: 41, description: 'A quick errand that turns into a campus-wide reroute.' },
+      { name: 'Backpack Zip Catastrophe', rarity: 'freshman', attack: 43, defense: 39, description: 'The kind of equipment failure that ruins momentum instantly.' },
+      { name: 'Quad Cutthrough', rarity: 'freshman', attack: 47, defense: 42, description: 'A route choice that saves seconds and starts stories.' },
+      { name: 'Chromebook Cart Chase', rarity: 'freshman', attack: 49, defense: 38, description: 'The race to the last charged laptop is never dignified.' },
+      { name: 'First Period Recovery', rarity: 'freshman', attack: 45, defense: 44, description: 'An organized attempt to act awake before the day catches up.' },
       { name: 'Building Tour Speedrun', rarity: 'sophomore', attack: 69, defense: 58, description: 'Every hall, every shortcut, zero time to explain any of it.' },
+      { name: 'Counselor Office Whisper Network', rarity: 'sophomore', attack: 67, defense: 61, description: 'Half advice, half rumor, all moving faster than expected.' },
+      { name: 'Lunch Bell Timing Window', rarity: 'sophomore', attack: 64, defense: 60, description: 'A precise sequence that only works if nobody slows down.' },
+      { name: 'Stairwell Remix', rarity: 'sophomore', attack: 70, defense: 57, description: 'The alternate route everybody swears is faster this week.' },
       { name: 'Iconic Places Deluxe', rarity: 'junior', attack: 89, defense: 82, description: 'The upgraded location card for players chasing stronger boards.' },
       { name: 'Hallway Crowd Control', rarity: 'junior', attack: 92, defense: 84, description: 'A defensive card born from absolute chaos.' },
+      { name: 'Auditorium Backstage Leak', rarity: 'junior', attack: 90, defense: 80, description: 'Information slips out early and changes the entire buildup.' },
       { name: 'Building Lore Compendium', rarity: 'senior', attack: 115, defense: 102, description: 'All the context, all the references, none of the filler.' },
       { name: 'Iconic Events Marathon', rarity: 'senior', attack: 120, defense: 108, description: 'A greatest-hits card with heavy staying power.' },
       { name: 'Vending Machine Incident of 24', rarity: 'superSenior', attack: 140, defense: 128, description: 'The defining chase card of Sprint 1.' },
@@ -90,6 +114,9 @@ function enrichCard(card) {
     rarityKey,
     rarity: card.rarity || rarityKey,
     rarityLabel: RARITIES[rarityKey].label,
+    rarityColor: RARITIES[rarityKey].color,
+    rarityAccent: RARITIES[rarityKey].accent,
+    image: getCardImage(card, rarityKey),
   };
 }
 
@@ -115,17 +142,39 @@ function getRarityRank(rarityKey) {
   return RARITY_ORDER.indexOf(rarityKey);
 }
 
+function renderItemImageMarkup(card, options = {}) {
+  const safeCard = enrichCard(card);
+  const wrapperClass = options.wrapperClass || 'item-icon';
+  const imageClass = options.imageClass ? `item-image ${options.imageClass}` : 'item-image';
+
+  return `
+    <div class="${wrapperClass}">
+      <img class="${imageClass}" src="${safeCard.image}" alt="${safeCard.name}">
+    </div>
+  `;
+}
+
+function renderRarityChipMarkup(card, extraClass = '') {
+  const safeCard = enrichCard(card);
+  const className = extraClass ? `rarity-chip ${extraClass}` : 'rarity-chip';
+
+  return `
+    <span class="${className}">
+      <span class="rarity-chip-swatch" style="background:${safeCard.rarityColor}; border-color:${safeCard.rarityAccent};"></span>
+      <span>${safeCard.rarityLabel}</span>
+    </span>
+  `;
+}
+
 function renderCardMarkup(card, options = {}) {
   const safeCard = enrichCard(card);
   const compactClass = options.compact ? ' compact' : '';
 
   return `
     <article class="display-card rarity-${safeCard.rarityKey}${compactClass}">
-      <div class="card-badge">
-        <span>${initialsFromName(safeCard.name)}</span>
-      </div>
+      ${renderItemImageMarkup(safeCard, { wrapperClass: 'card-badge' })}
       <div class="card-copy">
-        <p class="card-rarity">${safeCard.rarityLabel}</p>
+        <div class="card-rarity">${renderRarityChipMarkup(safeCard)}</div>
         <h4>${safeCard.name}</h4>
         <p class="card-description">${safeCard.description || 'No description yet.'}</p>
         <div class="card-stats">
@@ -141,8 +190,8 @@ function renderRouletteItemMarkup(card) {
   const safeCard = enrichCard(card);
 
   return `
-    <div class="item-icon" aria-hidden="true">${initialsFromName(safeCard.name)}</div>
-    <div class="item-name">${safeCard.name}</div>
+    ${renderItemImageMarkup(safeCard, { wrapperClass: 'item-icon roulette-item-icon' })}
+    <div class="roulette-color-swatch" style="background:${safeCard.rarityColor}; border-color:${safeCard.rarityAccent};"></div>
   `;
 }
 
@@ -150,8 +199,8 @@ function renderWonItemMarkup(card) {
   const safeCard = enrichCard(card);
 
   return `
-    <div class="won-rarity">${safeCard.rarityLabel}</div>
-    <div class="item-icon item-icon-large" aria-hidden="true">${initialsFromName(safeCard.name)}</div>
+    <div class="won-rarity">${renderRarityChipMarkup(safeCard)}</div>
+    ${renderItemImageMarkup(safeCard, { wrapperClass: 'item-icon item-icon-large', imageClass: 'item-image-large' })}
     <div class="item-name won-item-name">${safeCard.name}</div>
     <div class="won-item-meta">${safeCard.caseName}</div>
     <div class="won-item-stats">ATK ${safeCard.attack} | DEF ${safeCard.defense}</div>
@@ -251,7 +300,7 @@ function selectCase(index) {
 }
 
 function buildStrip(winItem) {
-  const itemWidth = 140;
+  const itemWidth = 160;
   const totalItems = 70;
   const winIndex = 55;
 
@@ -275,7 +324,7 @@ function updateDashboard() {
   const inventory = getInventory();
   balanceEl.textContent = formatPP(getBalance());
   inventoryCountEl.textContent = String(inventory.length);
-  incomeRateEl.textContent = formatPP(getPassiveIncomePerHour());
+  incomeRateEl.textContent = formatPP(getPassiveIncomePerMinute());
 }
 
 function showWonItem(card) {

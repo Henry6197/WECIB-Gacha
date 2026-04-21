@@ -15,7 +15,25 @@ const RARITY_KEY_ALIASES = {
   uncommon: 'sophomore',
   rare: 'junior',
   epic: 'senior',
+  ultraRare: 'superSenior',
+  'ultra rare': 'superSenior',
   secret: 'superSenior',
+};
+
+const CARD_RARITY_STYLES = {
+  freshman: { color: '#d7e3ff', accent: '#3259a8' },
+  sophomore: { color: '#d9f7c8', accent: '#3b7a2f' },
+  junior: { color: '#b9d4ff', accent: '#1742b8' },
+  senior: { color: '#ffd3a9', accent: '#b34d13' },
+  superSenior: { color: '#ffe48c', accent: '#8b5e00' },
+};
+
+const CARD_PLACEHOLDER_IMAGES = {
+  freshman: 'Images/placeholder-freshman.svg',
+  sophomore: 'Images/placeholder-sophomore.svg',
+  junior: 'Images/placeholder-junior.svg',
+  senior: 'Images/placeholder-senior.svg',
+  superSenior: 'Images/placeholder-super-senior.svg',
 };
 
 function roundPP(value) {
@@ -24,6 +42,15 @@ function roundPP(value) {
 
 function normalizeStoredRarity(rarityKey) {
   return RARITY_KEY_ALIASES[rarityKey] || rarityKey || 'freshman';
+}
+
+function getCardImage(card, rarityKey = 'freshman') {
+  if (card.image) {
+    return card.image;
+  }
+
+  const safeRarityKey = normalizeStoredRarity(rarityKey);
+  return CARD_PLACEHOLDER_IMAGES[safeRarityKey] || CARD_PLACEHOLDER_IMAGES.freshman;
 }
 
 function normalizeCard(card) {
@@ -37,6 +64,7 @@ function normalizeCard(card) {
     description: card.description || '',
     attack: Number(card.attack) || 0,
     defense: Number(card.defense) || 0,
+    image: getCardImage(card, rarityKey),
     caseName: card.caseName || 'Unknown Case',
     wonAt: card.wonAt || new Date().toISOString(),
   };
@@ -63,15 +91,15 @@ function applyPassiveProgress(state, now = Date.now()) {
     return { ...safeState, lastAccrualAt: now };
   }
 
-  const incomePerHour = safeState.inventory.reduce((sum, card) => {
+  const incomePerMinute = safeState.inventory.reduce((sum, card) => {
     return sum + (PASSIVE_PP_RATES[normalizeStoredRarity(card.rarityKey)] || 0);
   }, 0);
 
-  if (incomePerHour <= 0) {
+  if (incomePerMinute <= 0) {
     return { ...safeState, lastAccrualAt: now };
   }
 
-  const earned = roundPP((incomePerHour * elapsedMs) / 3600000);
+  const earned = roundPP((incomePerMinute * elapsedMs) / 60000);
 
   return {
     ...safeState,
@@ -145,7 +173,7 @@ function getBalance() {
   return getGameState().ppBalance;
 }
 
-function getPassiveIncomePerHour() {
+function getPassiveIncomePerMinute() {
   return getGameState().inventory.reduce((sum, card) => {
     return sum + (PASSIVE_PP_RATES[normalizeStoredRarity(card.rarityKey)] || 0);
   }, 0);
