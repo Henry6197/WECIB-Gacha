@@ -8,34 +8,84 @@
 </head>
 <body>
   <div id="app">
-    <header>
-      <h1>WECIB GACHA</h1>
-      <div class="balance-group">
-        <div class="balance">Balance: $<span id="balance">1000.00</span></div>
+    <nav class="top-nav">
+      <a class="nav-link is-active" href="index.html">Case Opener</a>
+      <a class="nav-link" href="collection.html">Collection</a>
+    </nav>
+
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">WECIBGacha</p>
+        <h1>Open cases. Stack lore. Farm PPs.</h1>
+      </div>
+
+      <div class="hero-stats">
+        <article class="stat-card accent-red">
+          <span class="stat-label">PP Balance</span>
+          <strong id="balance">120.00</strong>
+        </article>
+        <article class="stat-card accent-gold">
+          <span class="stat-label">Collection Size</span>
+          <strong id="inventoryCount">0</strong>
+        </article>
+        <article class="stat-card accent-blue">
+          <span class="stat-label">Passive Rate</span>
+          <strong><span id="incomeRate">0.00</span> PP/hr</strong>
+        </article>
       </div>
     </header>
 
-    <div class="case-select">
-      <h2>CASES</h2>
-      <div class="cases" id="cases"></div>
-    </div>
+    <main class="dashboard">
+      <section class="panel tutorial-panel">
+        <div class="panel-header">
+          <h2>How To Play</h2>
+        </div>
+        <div class="tutorial-grid">
+          <article>
+            <h3>1. Pick a case</h3>
+            <p>Each case has its own card pool and price. Higher-tier cases cost more PPs but have better odds at senior pulls.</p>
+          </article>
+          <article>
+            <h3>2. Open for random cards</h3>
+            <p>The opener uses weighted rarity drops from Freshman through Super-Senior. Duplicates are saved instead of discarded.</p>
+          </article>
+          <article>
+            <h3>3. Grow PP income</h3>
+            <p>Every card adds passive PPs over time. Your progress and collection stay in local storage after refresh.</p>
+          </article>
+        </div>
+      </section>
 
-    <div class="opener-section" id="openerSection" style="display:none;">
-      <div class="selected-case-info">
-        <h2 id="selectedCaseName"></h2>
-        <p>Price: $<span id="selectedCasePrice"></span></p>
-      </div>
+      <section class="panel case-select">
+        <div class="panel-header">
+          <h2>Cases</h2>
+          <p>Choose a case to view its pool and open it with PPs.</p>
+        </div>
+        <div class="cases" id="cases"></div>
+      </section>
 
-      <div class="roulette-container">
-        <div class="roulette-marker"></div>
-        <div class="roulette-strip" id="rouletteStrip"></div>
-      </div>
+      <section class="panel opener-section" id="openerSection" hidden>
+        <div class="panel-header split-header">
+          <div>
+            <h2 id="selectedCaseName"></h2>
+            <p id="selectedCaseFlavor" class="case-flavor"></p>
+          </div>
+          <div class="selected-case-meta">
+            <span>Price: <strong><span id="selectedCasePrice"></span> PP</strong></span>
+          </div>
+        </div>
 
-      <div class="controls">
-        <button id="openBtn" class="btn btn-open">OPEN CASE</button>
-        <button id="backBtn" class="btn btn-back">BACK</button>
-      </div>
+        <div class="drop-rates-wrap">
+          <h3>Drop Rates</h3>
+          <div class="drop-rates" id="dropRates"></div>
+        </div>
 
+        <p class="status-message" id="statusMessage">Pick a case to start opening.</p>
+
+        <div class="roulette-container">
+          <div class="roulette-marker"></div>
+          <div class="roulette-strip" id="rouletteStrip"></div>
+        </div>
       <div class="won-item" id="wonItem" style="display:none;">
         <h3>YOU UNBOXED</h3>
         <div class="won-item-card" id="wonItemCard"></div>
@@ -44,7 +94,17 @@
     <div id="collection_resources">
       <button id="collection">collection</button>
 
+        <div class="controls">
+          <button id="openBtn" class="btn btn-open">Open Case</button>
+          <button id="backBtn" class="btn btn-back">Back To Cases</button>
+        </div>
 
+        <div class="won-item" id="wonItem" hidden>
+          <h3>Latest Pull</h3>
+          <div class="won-item-card" id="wonItemCard"></div>
+        </div>
+      </section>
+    </main>
     </div>
 
   </div>

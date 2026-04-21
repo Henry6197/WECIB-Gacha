@@ -1,6 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WECIB GACHA Collection</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <nav class="top-nav">
+      <a class="nav-link" href="index.html">Case Opener</a>
+      <a class="nav-link is-active" href="collection.html">Collection</a>
+    </nav>
+
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">WECIBGacha Archive</p>
+        <h1>Your collection, duplicates, and rarity spread.</h1>
+      </div>
+
+      <div class="hero-stats">
+        <article class="stat-card accent-red">
+          <span class="stat-label">PP Balance</span>
+          <strong id="balance">120.00</strong>
+        </article>
+        <article class="stat-card accent-gold">
+          <span class="stat-label">Collection Size</span>
+          <strong id="inventoryCount">0</strong>
+        </article>
+        <article class="stat-card accent-blue">
+          <span class="stat-label">Passive Rate</span>
+          <strong><span id="incomeRate">0.00</span> PP/hr</strong>
+        </article>
+      </div>
+    </header>
+
+    <main class="dashboard">
+      <section class="panel collection-section">
+        <div class="panel-header split-header">
+          <div>
+            <h2>Collection</h2>
+            <p id="collectionSummary">No cards collected yet.</p>
+          </div>
+          <button id="resetProgressBtn" class="btn btn-secondary">Reset Progress</button>
+        </div>
+
+        <p class="collection-empty" id="collectionEmpty">Open your first case to start building the WECIB archive.</p>
+        <div class="collection-grid" id="collectionGrid"></div>
+      </section>
+    </main>
+  </div>
+  <script src="storage.js"></script>
+  <script src="collection.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Collection</title>

@@ -1,315 +1,345 @@
-
-// ─── Skin Data ───────────────────────────────────────────────
-
-
-
 const RARITIES = {
-  common: { label: 'Freshman', color: '#dee4ff', weight: 65 },
-  uncommon: { label: 'Sophomore', color: '#8fff74', weight: 25 },
-  rare: { label: 'Junior', color: '#4781ff', weight: 8 },
-  epic: { label: 'Senior', color: '#922ce6', weight: 1.8 },
-  secret: { label: '★ Super Senior ★', color: '#ffd700', weight: 0.2 },
+  freshman: { label: 'Freshman', color: '#d7e3ff', accent: '#3259a8', weight: 58 },
+  sophomore: { label: 'Sophomore', color: '#d9f7c8', accent: '#3b7a2f', weight: 25 },
+  junior: { label: 'Junior', color: '#b9d4ff', accent: '#1742b8', weight: 11 },
+  senior: { label: 'Senior', color: '#ffd3a9', accent: '#b34d13', weight: 4 },
+  superSenior: { label: 'Super-Senior', color: '#ffe48c', accent: '#8b5e00', weight: 2 },
 };
 
-const RARITY_ORDER = ['common', 'uncommon', 'rare', 'epic', 'secret'];
-
-const RARITY_ALIASES = {
-  consumer: 'common',
-  industrial: 'uncommon',
-  milspec: 'rare',
-  restricted: 'epic',
-  classified: 'epic',
-  covert: 'epic',
-  gold: 'secret',
-};
-
-function normalizeRarity(rarity) {
-  return RARITY_ALIASES[rarity] || rarity;
-}
-
-// ─── Item Processing ─────────────────────────────────────────
-
-function applyFloat(baseItem) {
-  return {
-    ...baseItem,
-    rarityKey: normalizeRarity(baseItem.rarity),
-  };
-}
-
-const S = 'https://community.akamai.steamstatic.com/economy/image/';
-
+const RARITY_ORDER = ['freshman', 'sophomore', 'junior', 'senior', 'superSenior'];
 
 const CASES = [
   {
-name: 'MHS Case',
-    price: 1.00,
+    name: 'MHS Case',
+    price: 12,
     image: 'Images/crate1.png',
+    flavor: 'Hallway lore, familiar spots, and the daily chaos that built the wiki.',
     items: [
-      { name: 'Mr. Gross', rarity: 'common', price: 3.50, attack: 92, defense: 76, image: 'https://randomuser.me/api/portraits/women/1.jpg' },
-      { name: 'Theatre', rarity: 'common', price: 8.25, attack: 182, defense: 167, image: 'https://randomuser.me/api/portraits/men/1.jpg' },
-      { name: 'wallholes', rarity: 'common', price: 19.99, attack: 264, defense: 251, image: 'https://randomuser.me/api/portraits/women/2.jpg' },
-      { name: 'MHS Campus', rarity: 'common', price: 2.75, attack: 71, defense: 88, image: 'https://randomuser.me/api/portraits/men/2.jpg' },
-      { name: 'Gymnasium', rarity: 'common', price: 2.75, attack: 71, defense: 88, image: 'https://randomuser.me/api/portraits/men/2.jpg' },
-      { name: 'Gymnasium', rarity: 'common', price: 2.75, attack: 71, defense: 88, image: 'https://randomuser.me/api/portraits/men/2.jpg' }
-    ]
+      { name: 'South Hall Stampede', rarity: 'freshman', attack: 42, defense: 35, description: 'The passing-period traffic jam that somehow happens every single day.' },
+      { name: 'MHS Campus', rarity: 'freshman', attack: 38, defense: 44, description: 'A wide-angle classic. Reliable, crowded, and always relevant.' },
+      { name: 'As Many People As Want Their Picture Taken', rarity: 'sophomore', attack: 66, defense: 57, description: 'A quote with permanent aura. Nobody fully explains it, everyone remembers it.' },
+      { name: 'Theatre Hallway', rarity: 'sophomore', attack: 59, defense: 61, description: 'A cultural corridor where half the lore seems to begin.' },
+      { name: 'Wallholes', rarity: 'junior', attack: 74, defense: 72, description: 'Architectural mystery turned community bit.' },
+      { name: 'Iconic Stairwell Debate', rarity: 'junior', attack: 82, defense: 68, description: 'A minor argument that somehow turned into a semester-long reference.' },
+      { name: 'Mr. Gross Sighting', rarity: 'senior', attack: 95, defense: 80, description: 'A rare appearance that instantly changes the energy in the room.' },
+      { name: 'Vending Machine Incident of 24', rarity: 'superSenior', attack: 130, defense: 118, description: 'Peak WECIB legend status. The pull everybody talks about.' },
+    ],
   },
-    {
-name: 'RT2 Case',
-    price: 30.00,
+  {
+    name: 'RT2 Case',
+    price: 24,
     image: 'Images/rt2Crate.png',
+    flavor: 'More focused event cards and higher-end pulls from the deeper lore pool.',
     items: [
-      { name: '', rarity: 'common', price: 3.50, attack: 92, defense: 76, image: 'https://randomuser.me/api/portraits/women/1.jpg' },
-      { name: 'James Chen', rarity: 'uncommon', price: 8.25, attack: 182, defense: 167, image: 'https://randomuser.me/api/portraits/men/1.jpg' },
-      { name: 'Sarah Williams', rarity: 'rare', price: 19.99, attack: 264, defense: 251, image: 'https://randomuser.me/api/portraits/women/2.jpg' },
-      { name: 'Marcus Johnson', rarity: 'common', price: 2.75, attack: 71, defense: 88, image: 'https://randomuser.me/api/portraits/men/2.jpg' },
-      { name: 'Olivia Martin', rarity: 'uncommon', price: 11.40, attack: 211, defense: 174, image: 'https://randomuser.me/api/portraits/women/3.jpg' },
-      { name: 'David Anderson', rarity: 'rare', price: 25.30, attack: 298, defense: 242, image: 'https://randomuser.me/api/portraits/men/3.jpg' },
-      { name: 'Isabella Davis', rarity: 'epic', price: 42.50, attack: 352, defense: 341, image: 'https://randomuser.me/api/portraits/women/4.jpg' },
-      { name: 'Lucas Brown', rarity: 'common', price: 1.99, attack: 119, defense: 101, image: 'https://randomuser.me/api/portraits/men/4.jpg' },
-      { name: 'Sophia Kumar', rarity: 'uncommon', price: 9.80, attack: 196, defense: 226, image: 'https://randomuser.me/api/portraits/women/5.jpg' },
-      { name: 'Noah Taylor', rarity: 'rare', price: 18.75, attack: 273, defense: 317, image: 'https://randomuser.me/api/portraits/men/5.jpg' },
-      { name: 'Ava Thompson', rarity: 'epic', price: 55.00, attack: 384, defense: 332, image: 'https://randomuser.me/api/portraits/women/6.jpg' },
-      { name: 'Ethan Wilson', rarity: 'epic', price: 125.99, attack: 417, defense: 398, image: 'https://randomuser.me/api/portraits/men/6.jpg' },
-      { name: 'Mia Garcia', rarity: 'common', price: 4.25, attack: 58, defense: 133, image: 'https://randomuser.me/api/portraits/women/7.jpg' },
-      { name: 'Benjamin Lee', rarity: 'uncommon', price: 12.60, attack: 145, defense: 203, image: 'https://randomuser.me/api/portraits/men/7.jpg' },
-      { name: 'Charlotte Moore', rarity: 'rare', price: 23.45, attack: 308, defense: 289, image: 'https://randomuser.me/api/portraits/women/8.jpg' },
-      { name: 'Alexander White', rarity: 'epic', price: 48.75, attack: 329, defense: 411, image: 'https://randomuser.me/api/portraits/men/8.jpg' },
-      { name: 'Amelia Harris', rarity: 'epic', price: 89.50, attack: 366, defense: 374, image: 'https://randomuser.me/api/portraits/women/9.jpg' },
-      { name: 'Mason Clark', rarity: 'secret', price: 350.00, attack: 481, defense: 455, image: 'https://randomuser.me/api/portraits/men/9.jpg' },
-    ]
+      { name: 'Lunch Table Alliance', rarity: 'freshman', attack: 41, defense: 39, description: 'Temporary treaty. Permanent screenshot material.' },
+      { name: 'Club Rush Flyer Wall', rarity: 'freshman', attack: 46, defense: 33, description: 'Too many posters, not enough wall space.' },
+      { name: 'Iconic Place Roll Call', rarity: 'sophomore', attack: 63, defense: 55, description: 'A fast tour of the places every WECIB player should know.' },
+      { name: 'After-School Atrium Crowd', rarity: 'sophomore', attack: 68, defense: 59, description: 'Nobody is leaving, everyone has a story.' },
+      { name: 'Parking Lot Plot Twist', rarity: 'junior', attack: 83, defense: 77, description: 'A routine dismissal interrupted by avoidable nonsense.' },
+      { name: 'Spirit Week Sweep', rarity: 'junior', attack: 87, defense: 79, description: 'A coordinated effort with surprising commitment.' },
+      { name: 'Iconic Event Archive', rarity: 'senior', attack: 104, defense: 92, description: 'A binder full of proof that the lore is real.' },
+      { name: 'Late Bell Legend', rarity: 'senior', attack: 112, defense: 96, description: 'An all-timer excuse card with elite survivability.' },
+      { name: 'Picture Day Uprising', rarity: 'superSenior', attack: 136, defense: 121, description: 'The day the hallway became a full production set.' },
+    ],
   },
-{
-name: 'RT1 Case',
-    price: 100.00,
+  {
+    name: 'RT1 Case',
+    price: 40,
     image: 'Images/rt1Crate.png',
+    flavor: 'Premium pulls with stacked senior odds and the most replayed WECIB moments.',
     items: [
-      { name: 'Emma Rodriguez', rarity: 'common', price: 3.50, attack: 92, defense: 76, image: 'https://randomuser.me/api/portraits/women/1.jpg' },
-      { name: 'James Chen', rarity: 'uncommon', price: 8.25, attack: 182, defense: 167, image: 'https://randomuser.me/api/portraits/men/1.jpg' },
-      { name: 'Sarah Williams', rarity: 'rare', price: 19.99, attack: 264, defense: 251, image: 'https://randomuser.me/api/portraits/women/2.jpg' },
-      { name: 'Marcus Johnson', rarity: 'common', price: 2.75, attack: 71, defense: 88, image: 'https://randomuser.me/api/portraits/men/2.jpg' },
-      { name: 'Olivia Martin', rarity: 'uncommon', price: 11.40, attack: 211, defense: 174, image: 'https://randomuser.me/api/portraits/women/3.jpg' },
-      { name: 'David Anderson', rarity: 'rare', price: 25.30, attack: 298, defense: 242, image: 'https://randomuser.me/api/portraits/men/3.jpg' },
-      { name: 'Isabella Davis', rarity: 'epic', price: 42.50, attack: 352, defense: 341, image: 'https://randomuser.me/api/portraits/women/4.jpg' },
-      { name: 'Lucas Brown', rarity: 'common', price: 1.99, attack: 119, defense: 101, image: 'https://randomuser.me/api/portraits/men/4.jpg' },
-      { name: 'Sophia Kumar', rarity: 'uncommon', price: 9.80, attack: 196, defense: 226, image: 'https://randomuser.me/api/portraits/women/5.jpg' },
-      { name: 'Noah Taylor', rarity: 'rare', price: 18.75, attack: 273, defense: 317, image: 'https://randomuser.me/api/portraits/men/5.jpg' },
-      { name: 'Ava Thompson', rarity: 'epic', price: 55.00, attack: 384, defense: 332, image: 'https://randomuser.me/api/portraits/women/6.jpg' },
-      { name: 'Ethan Wilson', rarity: 'epic', price: 125.99, attack: 417, defense: 398, image: 'https://randomuser.me/api/portraits/men/6.jpg' },
-      { name: 'Mia Garcia', rarity: 'common', price: 4.25, attack: 58, defense: 133, image: 'https://randomuser.me/api/portraits/women/7.jpg' },
-      { name: 'Benjamin Lee', rarity: 'uncommon', price: 12.60, attack: 145, defense: 203, image: 'https://randomuser.me/api/portraits/men/7.jpg' },
-      { name: 'Charlotte Moore', rarity: 'rare', price: 23.45, attack: 308, defense: 289, image: 'https://randomuser.me/api/portraits/women/8.jpg' },
-      { name: 'Alexander White', rarity: 'epic', price: 48.75, attack: 329, defense: 411, image: 'https://randomuser.me/api/portraits/men/8.jpg' },
-      { name: 'Amelia Harris', rarity: 'epic', price: 89.50, attack: 366, defense: 374, image: 'https://randomuser.me/api/portraits/women/9.jpg' },
-      { name: 'Mason Clark', rarity: 'secret', price: 350.00, attack: 481, defense: 455, image: 'https://randomuser.me/api/portraits/men/9.jpg' },
-    ]
+      { name: 'Morning Announcement Misfire', rarity: 'freshman', attack: 48, defense: 40, description: 'A small glitch that bought itself a lot of attention.' },
+      { name: 'Building Tour Speedrun', rarity: 'sophomore', attack: 69, defense: 58, description: 'Every hall, every shortcut, zero time to explain any of it.' },
+      { name: 'Iconic Places Deluxe', rarity: 'junior', attack: 89, defense: 82, description: 'The upgraded location card for players chasing stronger boards.' },
+      { name: 'Hallway Crowd Control', rarity: 'junior', attack: 92, defense: 84, description: 'A defensive card born from absolute chaos.' },
+      { name: 'Building Lore Compendium', rarity: 'senior', attack: 115, defense: 102, description: 'All the context, all the references, none of the filler.' },
+      { name: 'Iconic Events Marathon', rarity: 'senior', attack: 120, defense: 108, description: 'A greatest-hits card with heavy staying power.' },
+      { name: 'Vending Machine Incident of 24', rarity: 'superSenior', attack: 140, defense: 128, description: 'The defining chase card of Sprint 1.' },
+    ],
   },
 ];
-function playTicksDuring() {
-  // Optional sound hook; kept as a no-op when no audio assets are configured.
-}
 
-    let balance = JSON.parse(localStorage.getItem('balance')) ?? 1000;
-    let selectedCase = null;
-    let isSpinning = false;
+let selectedCase = null;
+let isSpinning = false;
 
-    function saveState() {
-  localStorage.setItem('balance', JSON.stringify(balance));
-}
-
-// ─── DOM refs ─────────────────────────────────────────────────
-
-const balanceEl       = document.getElementById('balance');
-const casesEl         = document.getElementById('cases');
-const openerSection   = document.getElementById('openerSection');
-const selectedNameEl  = document.getElementById('selectedCaseName');
+const balanceEl = document.getElementById('balance');
+const inventoryCountEl = document.getElementById('inventoryCount');
+const incomeRateEl = document.getElementById('incomeRate');
+const casesEl = document.getElementById('cases');
+const openerSection = document.getElementById('openerSection');
+const selectedNameEl = document.getElementById('selectedCaseName');
+const selectedFlavorEl = document.getElementById('selectedCaseFlavor');
 const selectedPriceEl = document.getElementById('selectedCasePrice');
-const rouletteStrip   = document.getElementById('rouletteStrip');
-const openBtn         = document.getElementById('openBtn');
-const backBtn         = document.getElementById('backBtn');
-const wonItemEl       = document.getElementById('wonItem');
-const wonItemCard     = document.getElementById('wonItemCard');
+const dropRatesEl = document.getElementById('dropRates');
+const statusMessageEl = document.getElementById('statusMessage');
+const rouletteStrip = document.getElementById('rouletteStrip');
+const openBtn = document.getElementById('openBtn');
+const backBtn = document.getElementById('backBtn');
+const wonItemEl = document.getElementById('wonItem');
+const wonItemCard = document.getElementById('wonItemCard');
 
-// ─── Render Cases (index.html only) ───────────────────────────
+function normalizeRarity(rarity) {
+  return rarity in RARITIES ? rarity : 'freshman';
+}
 
-if (casesEl) {
-  function renderCases() {
-    casesEl.innerHTML = '';
-    CASES.forEach((c, idx) => {
-      const card = document.createElement('div');
-      card.className = 'case-card';
-      card.innerHTML = `
-        <img class="case-icon" src="${c.image}" alt="${c.name}">
-        <div class="case-name">${c.name}</div>
-        <div class="case-price">$${c.price.toFixed(2)}</div>
-      `;
-      card.addEventListener('click', () => selectCase(idx));
-      casesEl.appendChild(card);
-    });
-  }
+function enrichCard(card) {
+  const rarityKey = normalizeRarity(card.rarityKey || card.rarity);
 
-  function selectCase(idx) {
-    selectedCase = CASES[idx];
-    document.querySelector('.case-select').style.display = 'none';
-    openerSection.style.display = 'block';
-    selectedNameEl.textContent = selectedCase.name;
-    selectedPriceEl.textContent = selectedCase.price.toFixed(2);
-    wonItemEl.style.display = 'none';
-    rouletteStrip.innerHTML = '';
-    rouletteStrip.style.transform = 'translateX(0)';
-  }
+  return {
+    ...card,
+    rarityKey,
+    rarity: card.rarity || rarityKey,
+    rarityLabel: RARITIES[rarityKey].label,
+  };
+}
 
-  backBtn.addEventListener('click', () => {
-    if (isSpinning) return;
-    openerSection.style.display = 'none';
-    document.querySelector('.case-select').style.display = 'block';
-    selectedCase = null;
-  });
+function formatPP(value) {
+  return Number(value).toFixed(2);
+}
 
-  renderCases();
+function initialsFromName(name) {
+  return name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 3)
+    .map((part) => part[0])
+    .join('')
+    .toUpperCase();
+}
 
-// ─── Weighted Random Pick ─────────────────────────────────────
+function setStatus(message) {
+  statusMessageEl.textContent = message;
+}
 
-function pickItem(caseData) {
-  // Count items per rarity so each rarity keeps its intended total weight
+function getRarityRank(rarityKey) {
+  return RARITY_ORDER.indexOf(rarityKey);
+}
+
+function renderCardMarkup(card, options = {}) {
+  const safeCard = enrichCard(card);
+  const compactClass = options.compact ? ' compact' : '';
+
+  return `
+    <article class="display-card rarity-${safeCard.rarityKey}${compactClass}">
+      <div class="card-badge">
+        <span>${initialsFromName(safeCard.name)}</span>
+      </div>
+      <div class="card-copy">
+        <p class="card-rarity">${safeCard.rarityLabel}</p>
+        <h4>${safeCard.name}</h4>
+        <p class="card-description">${safeCard.description || 'No description yet.'}</p>
+        <div class="card-stats">
+          <span>ATK ${safeCard.attack}</span>
+          <span>DEF ${safeCard.defense}</span>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+function renderRouletteItemMarkup(card) {
+  const safeCard = enrichCard(card);
+
+  return `
+    <div class="item-icon" aria-hidden="true">${initialsFromName(safeCard.name)}</div>
+    <div class="item-name">${safeCard.name}</div>
+  `;
+}
+
+function renderWonItemMarkup(card) {
+  const safeCard = enrichCard(card);
+
+  return `
+    <div class="won-rarity">${safeCard.rarityLabel}</div>
+    <div class="item-icon item-icon-large" aria-hidden="true">${initialsFromName(safeCard.name)}</div>
+    <div class="item-name won-item-name">${safeCard.name}</div>
+    <div class="won-item-meta">${safeCard.caseName}</div>
+    <div class="won-item-stats">ATK ${safeCard.attack} | DEF ${safeCard.defense}</div>
+    <p class="won-item-description">${safeCard.description || 'No description yet.'}</p>
+  `;
+}
+
+function getWeightedPool(caseData) {
   const rarityCounts = {};
-  caseData.items.forEach(item => {
+
+  caseData.items.forEach((item) => {
     const rarityKey = normalizeRarity(item.rarity);
     rarityCounts[rarityKey] = (rarityCounts[rarityKey] || 0) + 1;
   });
 
-  // Build weighted pool — split rarity weight evenly among its items
-  const pool = [];
-  caseData.items.forEach(item => {
+  return caseData.items.map((item) => {
     const rarityKey = normalizeRarity(item.rarity);
-    const rarityDef = RARITIES[rarityKey] || RARITIES.common;
-    const w = rarityDef.weight / rarityCounts[rarityKey];
-    pool.push({ item, weight: w });
+    return {
+      item: enrichCard(item),
+      weight: RARITIES[rarityKey].weight / rarityCounts[rarityKey],
+    };
   });
+}
 
-  // Normalize: sum up all weights, pick randomly
-  const totalWeight = pool.reduce((sum, p) => sum + p.weight, 0);
-  let rand = Math.random() * totalWeight;
-  for (const p of pool) {
-    rand -= p.weight;
-    if (rand <= 0) return p.item;
+function pickItem(caseData) {
+  const pool = getWeightedPool(caseData);
+  const totalWeight = pool.reduce((sum, entry) => sum + entry.weight, 0);
+  let roll = Math.random() * totalWeight;
+
+  for (const entry of pool) {
+    roll -= entry.weight;
+    if (roll <= 0) {
+      return entry.item;
+    }
   }
+
   return pool[pool.length - 1].item;
 }
 
-// ─── Build Roulette Strip ─────────────────────────────────────
+function getDropRateBreakdown(caseData) {
+  const pool = getWeightedPool(caseData);
+  const totalWeight = pool.reduce((sum, entry) => sum + entry.weight, 0);
+  const rarityWeights = {};
+
+  pool.forEach((entry) => {
+    rarityWeights[entry.item.rarityKey] = (rarityWeights[entry.item.rarityKey] || 0) + entry.weight;
+  });
+
+  return Object.entries(rarityWeights)
+    .map(([rarityKey, weight]) => ({
+      rarityKey,
+      label: RARITIES[rarityKey].label,
+      chance: ((weight / totalWeight) * 100).toFixed(1),
+    }))
+    .sort((left, right) => getRarityRank(left.rarityKey) - getRarityRank(right.rarityKey));
+}
+
+function renderCases() {
+  casesEl.innerHTML = '';
+
+  CASES.forEach((caseData, index) => {
+    const caseCard = document.createElement('button');
+    caseCard.type = 'button';
+    caseCard.className = 'case-card';
+    caseCard.innerHTML = `
+      <img class="case-icon" src="${caseData.image}" alt="${caseData.name}">
+      <div class="case-card-copy">
+        <h3>${caseData.name}</h3>
+        <p>${caseData.flavor}</p>
+      </div>
+      <div class="case-card-meta">
+        <span>${caseData.price} PP</span>
+        <span>${caseData.items.length} cards</span>
+      </div>
+    `;
+    caseCard.addEventListener('click', () => selectCase(index));
+    casesEl.appendChild(caseCard);
+  });
+}
+
+function selectCase(index) {
+  selectedCase = CASES[index];
+  openerSection.hidden = false;
+  selectedNameEl.textContent = selectedCase.name;
+  selectedFlavorEl.textContent = selectedCase.flavor;
+  selectedPriceEl.textContent = formatPP(selectedCase.price);
+  wonItemEl.hidden = true;
+  rouletteStrip.innerHTML = '';
+  rouletteStrip.style.transform = 'translateX(0)';
+
+  dropRatesEl.innerHTML = getDropRateBreakdown(selectedCase)
+    .map((entry) => `<span class="drop-pill rarity-${entry.rarityKey}">${entry.label}: ${entry.chance}%</span>`)
+    .join('');
+
+  setStatus(`Selected ${selectedCase.name}. Cost: ${formatPP(selectedCase.price)} PP.`);
+  openerSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 
 function buildStrip(winItem) {
-  const ITEM_WIDTH = 140;
-  const TOTAL_ITEMS = 70;
-  const WIN_INDEX = 55; // where the winning item sits
+  const itemWidth = 140;
+  const totalItems = 70;
+  const winIndex = 55;
 
   rouletteStrip.innerHTML = '';
   rouletteStrip.classList.remove('spinning');
   rouletteStrip.style.transitionProperty = 'none';
   rouletteStrip.style.transform = 'translateX(0)';
 
-  for (let i = 0; i < TOTAL_ITEMS; i++) {
-    let item;
-    if (i === WIN_INDEX) {
-      item = winItem;
-    } else {
-      item = applyFloat(pickItem(selectedCase));
-    }
-
-    const el = document.createElement('div');
-    el.className = `roulette-item rarity-${item.rarityKey}`;
-    if (item.rarityKey === 'secret') {
-      el.innerHTML = `
-        <img class="item-icon" src="gold.jpg" alt="★ Rare Special ★">
-        <div class="item-name" style="color:#ffd700">★ Rare Special ★</div>
-      `;
-      el.dataset.goldImage = item.image;
-      el.dataset.goldName = item.name;
-    } else {
-      el.innerHTML = `
-        <img class="item-icon" src="${item.image}" alt="${item.name}">
-        <div class="item-name">${item.name}</div>
-      `;
-    }
-    rouletteStrip.appendChild(el);
+  for (let index = 0; index < totalItems; index += 1) {
+    const item = index === winIndex ? winItem : pickItem(selectedCase);
+    const entry = document.createElement('div');
+    entry.className = `roulette-item rarity-${item.rarityKey}`;
+    entry.innerHTML = renderRouletteItemMarkup(item);
+    rouletteStrip.appendChild(entry);
   }
 
-  return { ITEM_WIDTH, WIN_INDEX };
+  return { itemWidth, winIndex };
 }
 
-// ─── Open Case ────────────────────────────────────────────────
+function updateDashboard() {
+  const inventory = getInventory();
+  balanceEl.textContent = formatPP(getBalance());
+  inventoryCountEl.textContent = String(inventory.length);
+  incomeRateEl.textContent = formatPP(getPassiveIncomePerHour());
+}
 
-openBtn.addEventListener('click', () => {
-  if (isSpinning || !selectedCase) return;
-  if (balance < selectedCase.price) {
-    alert('Not enough balance!');
+function showWonItem(card) {
+  wonItemEl.hidden = false;
+  wonItemCard.className = `won-item-card rarity-${card.rarityKey}`;
+  wonItemCard.innerHTML = renderWonItemMarkup(card);
+}
+
+function openSelectedCase() {
+  if (isSpinning || !selectedCase) {
+    return;
+  }
+
+  if (!spendPP(selectedCase.price)) {
+    setStatus(`Not enough PPs for ${selectedCase.name}. Keep farming passive income or open a cheaper case.`);
     return;
   }
 
   isSpinning = true;
   openBtn.disabled = true;
-  wonItemEl.style.display = 'none';
+  wonItemEl.hidden = true;
+  updateDashboard();
 
-  balance -= selectedCase.price;
-  updateBalance();
-
-  const winItem = applyFloat(pickItem(selectedCase));
-  winItem.caseName = selectedCase.name;
+  const winItem = enrichCard({ ...pickItem(selectedCase), caseName: selectedCase.name });
   addCardToInventory(winItem);
-  const { ITEM_WIDTH, WIN_INDEX } = buildStrip(winItem);
-
-  // Calculate offset: center the winning item under the marker
+  const { itemWidth, winIndex } = buildStrip(winItem);
   const containerWidth = document.querySelector('.roulette-container').offsetWidth;
-  const centerOffset = containerWidth / 2 - ITEM_WIDTH / 2;
-  // Add a small random offset within the item so it doesn't always land dead center
-  const randomNudge = (Math.random() - 0.5) * (ITEM_WIDTH * 0.6);
-  const targetX = -(WIN_INDEX * ITEM_WIDTH) + centerOffset + randomNudge;
-
-  // Spin duration
+  const centerOffset = containerWidth / 2 - itemWidth / 2;
+  const nudge = (Math.random() - 0.5) * (itemWidth * 0.6);
+  const targetX = -(winIndex * itemWidth) + centerOffset + nudge;
   const duration = 5000 + Math.random() * 1500;
 
-  // Force reflow then animate
   void rouletteStrip.offsetHeight;
   rouletteStrip.classList.add('spinning');
   rouletteStrip.style.transitionProperty = 'transform';
   rouletteStrip.style.transitionDuration = `${duration}ms`;
   rouletteStrip.style.transitionTimingFunction = 'cubic-bezier(0.15, 0.8, 0.3, 1)';
   rouletteStrip.style.transform = `translateX(${targetX}px)`;
+  setStatus(`Opening ${selectedCase.name}...`);
 
-  // Play tick sounds during spin
-  playTicksDuring(duration);
-
-  setTimeout(() => {
+  window.setTimeout(() => {
     isSpinning = false;
     openBtn.disabled = false;
     rouletteStrip.classList.remove('spinning');
+    updateDashboard();
+    showWonItem(winItem);
+    setStatus(`You pulled ${winItem.name} (${winItem.rarityLabel}).`);
+  }, duration + 120);
+}
 
-    // Reveal real gold item in roulette strip after spin
-    const winEl = rouletteStrip.children[55];
-    if (winItem.rarityKey === 'secret' && winEl && winEl.dataset.goldImage) {
-      winEl.innerHTML = `
-        <img class="item-icon" src="${winEl.dataset.goldImage}" alt="${winEl.dataset.goldName}">
-        <div class="item-name">${winEl.dataset.goldName}</div>
-      `;
-    }
+openBtn.addEventListener('click', openSelectedCase);
 
-    wonItemEl.style.display = 'block';
-    wonItemCard.className = `won-item-card rarity-${winItem.rarityKey}`;
-    wonItemCard.innerHTML = `
-      <img class="item-icon" src="${winItem.image}" alt="${winItem.name}">
-      <div class="item-name" style="color:${(RARITIES[winItem.rarityKey] || RARITIES.common).color}">${winItem.name}</div>
-      <div class="item-price" style="color:${(RARITIES[winItem.rarityKey] || RARITIES.common).color}">$${winItem.price.toFixed(2)}</div>
-      <div style="color:#64748b;font-size:0.7rem;margin-top:2px">${(RARITIES[winItem.rarityKey] || RARITIES.common).label}</div>
-    `;
+backBtn.addEventListener('click', () => {
+  if (isSpinning) {
+    return;
+  }
 
-    // Persist current balance after each opening
-    saveState();
-  }, duration + 200);
+  selectedCase = null;
+  openerSection.hidden = true;
+  wonItemEl.hidden = true;
+  rouletteStrip.innerHTML = '';
+  setStatus('Pick a case to start opening.');
 });
-}
-function updateBalance() {
-  balanceEl.textContent = balance.toFixed(2);
-  saveState();
-}
 
-updateBalance();
+renderCases();
+updateDashboard();
+window.setInterval(updateDashboard, 1000);
