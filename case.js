@@ -255,6 +255,7 @@ openBtn.addEventListener('click', () => {
 
   const winItem = applyFloat(pickItem(selectedCase));
   winItem.caseName = selectedCase.name;
+  addCardToInventory(winItem);
   const { ITEM_WIDTH, WIN_INDEX } = buildStrip(winItem);
 
   // Calculate offset: center the winning item under the marker
