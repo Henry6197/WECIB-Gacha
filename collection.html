@@ -30,7 +30,7 @@
         </article>
         <article class="stat-card accent-blue">
           <span class="stat-label">Passive Rate</span>
-          <strong><span id="incomeRate">0.00</span> PP/hr</strong>
+          <strong><span id="incomeRate">0.00</span> PP/min</strong>
         </article>
       </div>
     </header>
@@ -52,5 +52,178 @@
   </div>
   <script src="storage.js"></script>
   <script src="collection.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collection</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #card_box {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .collection-card {
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: transform 0.2s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .collection-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        .collection-card.rarity-common { background: #2a3646; }
+        .collection-card.rarity-common::before { background: linear-gradient(135deg, #dee4ff33, #a8bfff33); border-left: 4px solid #dee4ff; }
+        .collection-card.rarity-uncommon { background: #2a4634; }
+        .collection-card.rarity-uncommon::before { background: linear-gradient(135deg, #8fff7433, #6fff5a33); border-left: 4px solid #8fff74; }
+        .collection-card.rarity-rare { background: #36463d; }
+        .collection-card.rarity-rare::before { background: linear-gradient(135deg, #4781ff33, #356aff33); border-left: 4px solid #4781ff; }
+        .collection-card.rarity-epic { background: #462a46; }
+        .collection-card.rarity-epic::before { background: linear-gradient(135deg, #922ce633, #7a25b633); border-left: 4px solid #922ce6; }
+        .collection-card.rarity-secret { background: #463a2a; }
+        .collection-card.rarity-secret::before { background: linear-gradient(135deg, #ffd70033, #ffcc0033); border-left: 4px solid #ffd700; box-shadow: inset 0 0 20px #ffd70020; }
+        .collection-card:hover {
+            transform: translateY(-4px);
+        }
+        .card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        .card-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .card-rarity {
+            font-size: 0.9em;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+        .card-price {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .card-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+            color: #ccc;
+        }
+        .card-case, .card-date {
+            font-size: 0.8em;
+            color: #888;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: #1a1a1a;
+            color: white;
+        }
+        #backBtn {
+            background: #4a5568;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        #backBtn:hover {
+            background: #636c78;
+        }
+        .header-title {
+            margin: 0;
+        }
+        .controls {
+            display: flex;
+            gap: 12px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        #searchInput, #sortSelect {
+            padding: 10px 14px;
+            border: 1px solid #4a5568;
+            border-radius: 6px;
+            background: #2a2a2a;
+            color: white;
+            font-size: 14px;
+        }
+        #searchInput:focus, #sortSelect:focus {
+            outline: none;
+            border-color: #636c78;
+        }
+        #searchInput::placeholder {
+            color: #888;
+        }
+        .case-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .case-btn {
+            padding: 8px 12px;
+            border: 1px solid #4a5568;
+            border-radius: 6px;
+            background: #2a2a2a;
+            color: #ccc;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .case-btn.active {
+            background: #4a5568;
+            border-color: #636c78;
+            color: white;
+        }
+        .case-btn:hover:not(.active) {
+            background: #363636;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="header-title">My Collection</h1>
+        <button id="backBtn">← Back to Cases</button>
+    </header>
+    <div class="controls">
+        <input type="text" id="searchInput" placeholder="Search cards by name..." />
+        <select id="sortSelect">
+            <option value="newest">Sort: Newest</option>
+            <option value="rarity">Rarity</option>
+            <option value="attack">Attack</option>
+            <option value="defense">Defense</option>
+            <option value="case">Case</option>
+        </select>
+        <div class="case-buttons" id="caseButtons"></div>
+    </div>
+    <div id="card_box"></div>
+    
+    <script src="storage.js"></script>
+    <script src="case.js"></script>
+    <script src="cardsDisplay.js"></script>
+    <script>
+        document.getElementById('backBtn').addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+    </script>
 </body>
 </html>
